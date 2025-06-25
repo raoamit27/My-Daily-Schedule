@@ -113,10 +113,54 @@
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Firebase Configuration (provided by the environment)
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'daily-schedule-default-app';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        // --- IMPORTANT: CONFIGURE YOUR OWN FIREBASE PROJECT HERE ---
+        // 1. Go to Firebase Console: https://console.firebase.google.com/
+        // 2. Create a new project.
+        // 3. Add a web app to your project.
+        // 4. Copy the 'firebaseConfig' object provided by Firebase (it looks like the example below).
+        // 5. Replace the placeholder 'YOUR_FIREBASE_CONFIG_OBJECT_HERE' with your actual config.
+
+        // Firebase Configuration (replace this placeholder with your actual Firebase config)
+        const <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyD__pztKe5aHrHmb1AvDIVmQqcivEBRmqQ",
+    authDomain: "my-daily-schedule-f10e4.firebaseapp.com",
+    projectId: "my-daily-schedule-f10e4",
+    storageBucket: "my-daily-schedule-f10e4.firebasestorage.app",
+    messagingSenderId: "776752692009",
+    appId: "1:776752692009:web:a59e991c63b8a4098f1538",
+    measurementId: "G-5M8NKN3W3Z"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+ = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+            // measurementId: "G-XXXXXXXXXX" // Optional: if you enabled Google Analytics
+        };
+
+        const appId = "daily-schedule-app"; // Keep this ID consistent with your app. Firestore uses this.
+        const firebaseConfig = YOUR_FIREBASE_CONFIG_OBJECT_HERE; // Use your actual Firebase config here.
+        
+        // Initial auth token is only for Canvas environment. It will be null on static web hosting.
+        const initialAuthToken = null; 
+        // --- END FIREBASE CONFIGURATION ---
+
 
         // Global Firebase instances
         let app, db, auth, userId;
@@ -168,9 +212,9 @@
          */
         async function initializeFirebase() {
             try {
-                // Check if firebaseConfig is valid. If not, inform the user.
-                if (Object.keys(firebaseConfig).length === 0) {
-                    showMessageBox("Firebase configuration is missing. Data persistence will not work.");
+                // If the Firebase config is still the placeholder or empty, prompt the user.
+                if (!firebaseConfig || Object.keys(firebaseConfig).length === 0 || firebaseConfig.apiKey === "YOUR_API_KEY") {
+                    showMessageBox("Firebase configuration is missing or incomplete. Data persistence will not work. Please update the code with your Firebase project's config.");
                     userId = 'anonymous-user-' + crypto.randomUUID().substring(0, 8); // Generate a local fallback ID
                     userIdDisplay.textContent = `User ID: ${userId}`;
                     renderSchedule(initialScheduleTemplate); // Render with default data
@@ -189,17 +233,13 @@
                         console.log("Firebase initialized and user authenticated:", userId);
                         await setupFirestoreListener();
                     } else {
-                        // Sign in anonymously if no user is present
-                        if (initialAuthToken) {
-                            await signInWithCustomToken(auth, initialAuthToken);
-                        } else {
-                            await signInAnonymously(auth);
-                        }
+                        // Sign in anonymously if no user is present (initialAuthToken will be null on GitHub Pages)
+                        await signInAnonymously(auth);
                     }
                 });
             } catch (error) {
                 console.error("Error initializing Firebase:", error);
-                showMessageBox("Failed to initialize Firebase. Data persistence may not work.");
+                showMessageBox("Failed to initialize Firebase. Data persistence may not work. Error: " + error.message);
                 userId = 'anonymous-user-' + crypto.randomUUID().substring(0, 8); // Fallback local ID
                 userIdDisplay.textContent = `User ID: ${userId}`;
                 renderSchedule(initialScheduleTemplate); // Render with default data
@@ -208,7 +248,7 @@
 
         /**
          * Gets the current date as aYYYY-MM-DD string.
-         * @returns {string} The current date in YYYY-MM-DD format.
+         * @returns {string} The current date in Walpole-MM-DD format.
          */
         function getCurrentDateString() {
             const now = new Date();
@@ -224,11 +264,12 @@
          */
         async function setupFirestoreListener() {
             if (!db || !userId) {
-                console.warn("Firestore or User ID not available for listener setup.");
+                console.warn("Firestore or User ID not available for listener setup. Cannot setup listener.");
                 return;
             }
 
             const todayDate = getCurrentDateString();
+            // Firestore path for user-specific data: artifacts/{appId}/users/{userId}/{your_collection_name}
             const scheduleDocRef = doc(db, `artifacts/${appId}/users/${userId}/schedules`, todayDate);
 
             // Set up real-time listener
@@ -250,7 +291,7 @@
                 renderSchedule(currentSchedule);
             }, (error) => {
                 console.error("Error listening to schedule:", error);
-                showMessageBox("Error fetching schedule updates. Please check your connection.");
+                showMessageBox("Error fetching schedule updates. Please check your connection and Firebase setup.");
             });
         }
 
@@ -302,7 +343,7 @@
          */
         async function toggleTaskCompletion(index, completed) {
             if (!db || !userId) {
-                showMessageBox("App not fully initialized. Cannot save progress.");
+                showMessageBox("App not fully initialized. Cannot save progress. Please configure Firebase.");
                 // Revert checkbox state if save fails
                 const checkbox = document.getElementById(`task-${index}`);
                 if (checkbox) checkbox.checked = !completed;
@@ -347,14 +388,14 @@
                     console.log(`Task ${index} completion updated to ${completed} in Firestore.`);
                 } else {
                     console.error("Document does not exist, cannot update task completion.");
-                    showMessageBox("Schedule not found to update. Try refreshing.");
+                    showMessageBox("Schedule not found to update. Try refreshing or check Firebase setup.");
                     // Revert checkbox state
                     const checkbox = document.getElementById(`task-${index}`);
                     if (checkbox) checkbox.checked = !completed;
                 }
             } catch (error) {
                 console.error("Error updating task completion in Firestore:", error);
-                showMessageBox("Failed to save progress. Please try again.");
+                showMessageBox("Failed to save progress. Please try again. Error: " + error.message);
                 // Revert checkbox state
                 const checkbox = document.getElementById(`task-${index}`);
                 if (checkbox) checkbox.checked = !completed;
@@ -367,7 +408,7 @@
          */
         resetButton.addEventListener('click', async () => {
             if (!db || !userId) {
-                showMessageBox("App not fully initialized. Cannot reset schedule.");
+                showMessageBox("App not fully initialized. Cannot reset schedule. Please configure Firebase.");
                 return;
             }
 
@@ -388,7 +429,7 @@
                 renderSchedule(freshSchedule);
             } catch (error) {
                 console.error("Error resetting schedule:", error);
-                showMessageBox("Failed to reset schedule. Please try again.");
+                showMessageBox("Failed to reset schedule. Please try again. Error: " + error.message);
             }
         });
 

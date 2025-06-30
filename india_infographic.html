@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: The Shrinking Space for Dissent in India</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .kpi-card {
+            background-color: #16213E;
+            color: white;
+            border-left: 5px solid #E94560;
+        }
+        .flowchart-arrow {
+            color: #E94560;
+            font-size: 2rem;
+            line-height: 1;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#0F3460] mb-2">The Shrinking Space for Dissent</h1>
+            <p class="text-lg md:text-xl text-gray-600">A Visual Report on the State of Free Expression in India</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section id="overview" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#0F3460] mb-4 text-center">A Democracy in Decline?</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">Global indices reveal a consistent and worrying trend for India's democratic freedoms. The space for a free press, a cornerstone of any democracy, has seen a particularly sharp decline over the last several years, pushing India's ranking into the "very serious" category.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="w-full">
+                        <div class="chart-container mx-auto">
+                            <canvas id="pressFreedomChart"></canvas>
+                        </div>
+                         <p class="text-center text-sm text-gray-500 mt-2">Source: Reporters Without Borders (RSF)</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="kpi-card rounded-lg p-6 text-center shadow-md">
+                            <p class="text-5xl font-black">159</p>
+                            <p class="text-lg font-semibold mt-2">Press Freedom Rank</p>
+                            <p class="text-sm opacity-80">(2024, out of 180)</p>
+                        </div>
+                        <div class="kpi-card rounded-lg p-6 text-center shadow-md">
+                            <p class="text-5xl font-black">63<span class="text-3xl">/100</span></p>
+                            <p class="text-lg font-semibold mt-2">Global Freedom Score</p>
+                            <p class="text-sm opacity-80">(Partly Free)</p>
+                        </div>
+                        <div class="kpi-card rounded-lg p-6 text-center shadow-md">
+                            <p class="text-5xl font-black">50<span class="text-3xl">/100</span></p>
+                            <p class="text-lg font-semibold mt-2">Internet Freedom Score</p>
+                            <p class="text-sm opacity-80">(Partly Free)</p>
+                        </div>
+                        <div class="kpi-card rounded-lg p-6 text-center shadow-md">
+                            <p class="text-5xl font-black">2.4<span class="text-3xl">%</span></p>
+                            <p class="text-lg font-semibold mt-2">UAPA Conviction Rate</p>
+                            <p class="text-sm opacity-80">(2014-2021)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="anatomy" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#0F3460] mb-6 text-center">The Anatomy of Suppression</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">Criticism and dissent often trigger a systematic response designed to silence voices. This flow chart, built with HTML and CSS, illustrates the multi-pronged strategy that leverages legal, financial, and narrative tools against individuals and organizations.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 w-full text-center">
+                    <div class="p-4 border-2 border-[#0F3460] rounded-lg shadow-sm bg-blue-50">
+                        <h3 class="font-bold text-lg text-[#0F3460]">1. Dissent is Voiced</h3>
+                        <p class="text-sm">Journalism, Activism, Social Media Posts</p>
+                    </div>
+                    <div class="flowchart-arrow transform md:-rotate-90">⬇️</div>
+                    <div class="flex flex-col space-y-4">
+                        <div class="p-3 border-2 border-dashed border-[#E94560] rounded-lg bg-red-50">
+                            <h3 class="font-bold text-[#E94560]">Legal Tools</h3>
+                            <p class="text-sm">UAPA, Sedition, NSA</p>
+                        </div>
+                        <div class="p-3 border-2 border-dashed border-[#E94560] rounded-lg bg-red-50">
+                            <h3 class="font-bold text-[#E94560]">Financial Pressure</h3>
+                            <p class="text-sm">Agency Raids (ED, CBI), FCRA Blocks</p>
+                        </div>
+                         <div class="p-3 border-2 border-dashed border-[#E94560] rounded-lg bg-red-50">
+                            <h3 class="font-bold text-[#E94560]">Narrative Warfare</h3>
+                            <p class="text-sm">"Anti-National" Labels, Trolling</p>
+                        </div>
+                    </div>
+                    <div class="flowchart-arrow transform md:-rotate-90">⬇️</div>
+                    <div class="p-4 border-2 border-[#0F3460] rounded-lg shadow-sm bg-blue-50">
+                        <h3 class="font-bold text-lg text-[#0F3460]">2. The Outcome</h3>
+                        <p class="text-sm">Arrests, Prolonged Detention, Self-Censorship, Chilling Effect</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="legal-tools" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-[#0F3460] mb-4 text-center">The Legal Toolkit</h2>
+                    <p class="text-center text-gray-600 mb-6">A suite of stringent laws is frequently deployed against critics. These laws are often characterized by broad definitions and severe restrictions on bail, making the legal process itself a form of punishment.</p>
+                    <div class="chart-container mx-auto">
+                        <canvas id="lawsComparisonChart"></canvas>
+                    </div>
+                </div>
+                 <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-[#0F3460] mb-4 text-center">Process as Punishment</h2>
+                    <p class="text-center text-gray-600 mb-6">The Unlawful Activities (Prevention) Act (UAPA) has an extremely low conviction rate. This suggests its primary use is for prolonged pre-trial detention to silence individuals, rather than to secure convictions.</p>
+                     <div class="chart-container mx-auto">
+                        <canvas id="uapaConvictionChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="targets">
+                <h2 class="text-3xl font-bold text-[#0F3460] mb-6 text-center">Who is Being Targeted?</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">The pressure is applied across society, from prominent journalists and activists to ordinary citizens expressing their views online. Each group faces a unique combination of threats.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+                        <div class="text-5xl mb-4">📰</div>
+                        <h3 class="text-xl font-bold text-[#0F3460]">Journalists</h3>
+                        <p class="text-gray-600 mt-2">Face legal cases (UAPA), financial raids, intense online trolling, and corporate pressure.</p>
+                        <div class="mt-3 space-y-2">
+                            <div class="flex items-center justify-center">
+                                <p class="font-semibold text-sm text-[#E94560] inline-block mr-2">Case: Siddique Kappan</p>
+                                <button class="bg-[#E94560] text-white text-xs px-2 py-1 rounded-full hover:bg-opacity-90 transition-opacity" onclick="elaborateCase('Siddique Kappan')">✨ Elaborate</button>
+                            </div>
+                             <div class="flex items-center justify-center">
+                                <p class="font-semibold text-sm text-[#E94560] inline-block mr-2">Case: Ravish Kumar</p>
+                                <button class="bg-[#E94560] text-white text-xs px-2 py-1 rounded-full hover:bg-opacity-90 transition-opacity" onclick="elaborateCase('Ravish Kumar')">✨ Elaborate</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+                        <div class="text-5xl mb-4">✊</div>
+                        <h3 class="text-xl font-bold text-[#0F3460]">Activists</h3>
+                        <p class="text-gray-600 mt-2">Targeted with anti-terror laws, surveillance, and freezing of NGO funds via FCRA.</p>
+                        <div class="mt-3 space-y-2">
+                            <div class="flex items-center justify-center">
+                                <p class="font-semibold text-sm text-[#E94560] inline-block mr-2">Case: Stan Swamy</p>
+                                <button class="bg-[#E94560] text-white text-xs px-2 py-1 rounded-full hover:bg-opacity-90 transition-opacity" onclick="elaborateCase('Stan Swamy')">✨ Elaborate</button>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <p class="font-semibold text-sm text-[#E94560] inline-block mr-2">Case: Disha Ravi</p>
+                                <button class="bg-[#E94560] text-white text-xs px-2 py-1 rounded-full hover:bg-opacity-90 transition-opacity" onclick="elaborateCase('Disha Ravi')">✨ Elaborate</button>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <p class="font-semibold text-sm text-[#E94560] inline-block mr-2">Case: Umar Khalid</p>
+                                <button class="bg-[#E94560] text-white text-xs px-2 py-1 rounded-full hover:bg-opacity-90 transition-opacity" onclick="elaborateCase('Umar Khalid')">✨ Elaborate</button>
+                            </div>
+                             <div class="flex items-center justify-center">
+                                <p class="font-semibold text-sm text-[#E94560] inline-block mr-2">Case: CAA/NRC Protestors</p>
+                                <button class="bg-[#E94560] text-white text-xs px-2 py-1 rounded-full hover:bg-opacity-90 transition-opacity" onclick="elaborateCase('CAA/NRC Protestors')">✨ Elaborate</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+                         <div class="text-5xl mb-4">📱</div>
+                        <h3 class="text-xl font-bold text-[#0F3460]">Influencers</h3>
+                        <p class="text-gray-600 mt-2">Subject to FIRs for content, takedown orders under IT Rules, and online harassment.</p>
+                         <div class="mt-3 space-y-2">
+                            <div class="flex items-center justify-center">
+                                <p class="font-semibold text-sm text-[#E94560] inline-block mr-2">Case: Munawar Faruqui</p>
+                                <button class="bg-[#E94560] text-white text-xs px-2 py-1 rounded-full hover:bg-opacity-90 transition-opacity" onclick="elaborateCase('Munawar Faruqui')">✨ Elaborate</button>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <p class="font-semibold text-sm text-[#E94560] inline-block mr-2">Case: Jyoti Malhotra</p>
+                                <button class="bg-[#E94560] text-white text-xs px-2 py-1 rounded-full hover:bg-opacity-90 transition-opacity" onclick="elaborateCase('Jyoti Malhotra')">✨ Elaborate</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+                        <div class="text-5xl mb-4">👤</div>
+                        <h3 class="text-xl font-bold text-[#0F3460]">Citizens</h3>
+                        <p class="text-gray-600 mt-2">Arrested for tweets, memes, or WhatsApp forwards; face trolling by IT cells.</p>
+                        <div class="mt-3 space-y-2">
+                            <div class="flex items-center justify-center">
+                                <p class="font-semibold text-sm text-[#E94560] inline-block mr-2">Case: Prof. A. Mahapatra</p>
+                                <button class="bg-[#E94560] text-white text-xs px-2 py-1 rounded-full hover:bg-opacity-90 transition-opacity" onclick="elaborateCase('Prof. A. Mahapatra')">✨ Elaborate</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="digital" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-[#0F3460] mb-4 text-center">The Digital Battleground</h2>
+                    <p class="text-center text-gray-600 mb-6">Digital platforms have become a key arena for control. The government issues thousands of takedown orders, while surveillance technology allegedly targets critics, eroding privacy and fostering fear.</p>
+                     <div class="chart-container mx-auto">
+                        <canvas id="takedownChart"></canvas>
+                    </div>
+                </div>
+                 <div class="bg-[#1A1A2E] text-white rounded-lg shadow-lg p-6 md:p-8 flex flex-col justify-center items-center text-center">
+                    <div class="text-6xl mb-4">👁️</div>
+                    <h3 class="text-2xl font-bold text-white mb-2">The Pegasus Allegations</h3>
+                    <p class="text-gray-300">The "Pegasus Project" alleged widespread use of military-grade spyware in India, targeting journalists, opposition leaders, activists, and even judges. This represents a profound threat to privacy and free expression, creating an environment where no digital communication feels secure.</p>
+                </div>
+            </section>
+            
+            <section id="impact">
+                 <h2 class="text-3xl font-bold text-[#0F3460] mb-6 text-center">The Chilling Effect: Impact on a Nation</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">The cumulative pressure results in a tangible "chilling effect" that weakens democratic institutions, silences critical inquiry, and ultimately harms the entire nation's civic health.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <div class="text-5xl mb-4">📉</div>
+                        <h3 class="text-xl font-bold text-[#0F3460]">Erosion of Free Press</h3>
+                        <p class="text-gray-600 mt-2">Widespread self-censorship and a decline in investigative reporting weaken the media's role as a public watchdog.</p>
+                    </div>
+                     <div class="bg-white rounded-lg shadow-lg p-6">
+                        <div class="text-5xl mb-4">⛓️‍💥</div>
+                        <h3 class="text-xl font-bold text-[#0F3460]">Shrinking Civic Space</h3>
+                        <p class="text-gray-600 mt-2">CSOs and NGOs are crippled by funding restrictions and legal harassment, reducing their ability to advocate for human rights.</p>
+                    </div>
+                     <div class="bg-white rounded-lg shadow-lg p-6">
+                        <div class="text-5xl mb-4">🤫</div>
+                        <h3 class="text-xl font-bold text-[#0F3460]">Stifled Public Discourse</h3>
+                        <p class="text-gray-600 mt-2">Fear of reprisal discourages ordinary citizens from participating in debates on important national issues.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="mt-16 text-center text-gray-500 text-sm">
+            <p>This infographic is based on publicly available data from the report "The Shrinking Space for Dissent" and various global indices.</p>
+            <p>Generated by an AI assistant for informational purposes. All chart data is derived and synthesized from the source report.</p>
+        </footer>
+
+    </div>
+
+    <!-- The Modal -->
+    <div id="caseModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle" class="text-xl font-bold text-[#0F3460] mb-4"></h3>
+            <p id="modalContent" class="text-gray-700"></p>
+            <div id="modalLoading" class="text-center text-[#E94560] mt-4 hidden">Loading...</div>
+        </div>
+    </div>
+
+    <script>
+        const chartTooltip = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                },
+                legend: {
+                    labels: {
+                        color: '#4b5563'
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: '#4b5563' },
+                    grid: { color: '#e5e7eb' }
+                },
+                x: {
+                    ticks: { color: '#4b5563' },
+                    grid: { display: false }
+                }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        };
+
+        const chartTooltipHorizontal = { ...chartTooltip, indexAxis: 'y' };
+
+        function wrapLabel(str, maxWidth) {
+            if (str.length <= maxWidth) return str;
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines.filter(line => line.length > 0);
+        }
+
+        new Chart(document.getElementById('pressFreedomChart'), {
+            type: 'line',
+            data: {
+                labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: 'India\'s World Press Freedom Rank',
+                    data: [140, 142, 142, 150, 161, 159],
+                    backgroundColor: 'rgba(233, 69, 96, 0.2)',
+                    borderColor: '#E94560',
+                    tension: 0.1,
+                    fill: true
+                }]
+            },
+            options: {
+                ...chartTooltip,
+                scales: {
+                     y: {
+                        reverse: true,
+                        ticks: { color: '#4b5563' },
+                        grid: { color: '#e5e7eb' }
+                    },
+                    x: {
+                        ticks: { color: '#4b5563' },
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('uapaConvictionChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Cases without Conviction', 'Cases with Conviction'],
+                datasets: [{
+                    label: 'UAPA Outcomes',
+                    data: [97.6, 2.4],
+                    backgroundColor: ['#16213E', '#E94560'],
+                    borderColor: '#ffffff',
+                    borderWidth: 2,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                     tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: '#4b5563' }
+                    }
+                }
+            }
+        });
+        
+        const lawLabels = [
+            wrapLabel('Unlawful Activities (Prevention) Act', 16),
+            'National Security Act',
+            wrapLabel('Sedition-like Laws (New IPC)', 16),
+            wrapLabel('IT Rules 2021', 16),
+            wrapLabel('Foreign Contribution (Regulation) Act', 16)
+        ];
+        
+        new Chart(document.getElementById('lawsComparisonChart'), {
+            type: 'bar',
+            data: {
+                labels: lawLabels,
+                datasets: [{
+                    label: 'Severity of Impact on Rights (Qualitative)',
+                    data: [95, 90, 85, 75, 80],
+                    backgroundColor: ['#E94560', '#E94560', '#E94560', '#0F3460', '#0F3460'],
+                }]
+            },
+            options: { ...chartTooltipHorizontal, indexAxis: 'y' }
+        });
+        
+        new Chart(document.getElementById('takedownChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Twitter (X)', 'Facebook', 'YouTube', 'Instagram'],
+                datasets: [{
+                    label: 'Govt. Takedown Orders (Synthesized Data)',
+                    data: [8000, 6000, 4500, 5500],
+                    backgroundColor: ['#0F3460', '#16213E', '#E94560', '#1A1A2E'],
+                }]
+            },
+            options: {
+                ...chartTooltip,
+                plugins: {
+                    ...chartTooltip.plugins,
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        const caseStudiesData = {
+            'Siddique Kappan': 'Siddique Kappan, a journalist, was arrested in Oct 2020 while covering the Hathras gang-rape case. He was charged under UAPA for alleged terror links and promoting enmity. His prolonged detention for over two years, despite bail denials, highlights the "process as punishment" tactic, where legal proceedings are used to silence critics. He was released on bail in Feb 2023, after alleging torture by police.',
+            'Ravish Kumar': 'Ravish Kumar, a prominent journalist, faced severe harassment including death threats and online abuse for his critical reporting against the government. He coined "godi media" for channels seen as pro-government. He resigned from NDTV in Dec 2022 after its acquisition by the Adani Group, illustrating how corporate pressure and media consolidation silence dissenting voices.',
+            'Stan Swamy': 'Stan Swamy, an 84-year-old Jesuit priest and tribal rights activist, was arrested under UAPA in Oct 2020 on alleged Maoist links. Despite severe Parkinson\'s disease, his medical bail was denied. He died in state custody in July 2021 after contracting COVID-19. His death sparked global condemnation, symbolizing UAPA\'s punitive nature and its chilling effect on human rights defenders.',
+            'Disha Ravi': 'Disha Ravi, a 22-year-old climate activist, was arrested in Feb 2021 for allegedly editing and sharing an online "toolkit" supporting farmers\' protests. Charged with sedition and conspiracy, her case drew international criticism for criminalizing digital advocacy. She was granted bail, with the court noting citizens cannot be jailed merely for disagreement, but faces travel restrictions.',
+            'Umar Khalid': 'Umar Khalid, a student leader, was arrested in Sep 2020 under UAPA for his alleged role as a "mastermind" in the 2020 Delhi riots. Accused of sedition and conspiracy, his prolonged detention and repeated bail denials, despite concerns over fabricated evidence, exemplify UAPA\'s use for preventive detention. His case serves as a deterrent to activists and student leaders.',
+            'CAA/NRC Protestors': 'Meeran Haider, Shifa-Ur-Rehman, and pregnant Safoora Zargar were among those arrested under UAPA for peacefully protesting the Citizenship Amendment Act (CAA). Accused of conspiracy in the Delhi riots, their detentions highlighted UAPA\'s lack of pre-trial safeguards and its use to criminalize dissent from marginalized communities, suppressing fundamental rights of assembly and expression.',
+            'Munawar Faruqui': 'Munawar Faruqui, a stand-up comedian, was physically assaulted and jailed in Jan 2021 for allegedly hurting religious sentiments with jokes he hadn\'t even performed. This, along with other comedians facing FIRs and threats, highlights how vaguely worded laws and swift legal action are used to suppress artistic freedom and critical commentary, leading to self-censorship in the arts.',
+            'Prof. A. Mahapatra': 'Professor Ambikesh Mahapatra was arrested in 2012 for merely forwarding an email containing a cartoon of Chief Minister Mamata Banerjee. This case demonstrates the low threshold for state intervention against ordinary citizens for online criticism, fostering a pervasive culture of surveillance and self-censorship, where even minor online expressions can lead to legal repercussions.',
+        };
+
+        async function elaborateCase(caseName) {
+            const modal = document.getElementById('caseModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+            const modalLoading = document.getElementById('modalLoading');
+
+            modalTitle.textContent = `Case Study: ${caseName}`;
+            modalContent.textContent = '';
+            modalLoading.classList.remove('hidden');
+            modal.style.display = 'flex';
+
+            if (caseStudiesData[caseName]) {
+                modalContent.textContent = caseStudiesData[caseName];
+                modalLoading.classList.add('hidden');
+            } else {
+                try {
+                    const prompt = `Provide a concise, factual summary (maximum 100 words) of the case involving ${caseName} in India, focusing on the context of free speech, criticism of government, or alleged persecution. Do not include opinions or analysis, just the core facts.`;
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = "";
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        modalContent.textContent = text;
+                    } else {
+                        modalContent.textContent = 'Could not retrieve information for this case. Please try again.';
+                    }
+                } catch (error) {
+                    console.error('Error fetching elaboration:', error);
+                    modalContent.textContent = 'An error occurred while fetching information. Please try again later.';
+                } finally {
+                    modalLoading.classList.add('hidden');
+                }
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('caseModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
